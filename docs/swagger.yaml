@@ -1,0 +1,139 @@
+basePath: /_/
+definitions:
+  handlers.CreateMessage:
+    properties:
+      channel:
+        type: string
+      content:
+        type: string
+      date:
+        type: string
+      username:
+        type: string
+    type: object
+  handlers.CreateMessageRes:
+    properties:
+      inserted_id:
+        type: string
+    type: object
+  handlers.UpdateMessage:
+    properties:
+      channel:
+        type: string
+      content:
+        type: string
+      date:
+        type: string
+      username:
+        type: string
+    type: object
+  handlers.UpdateMessageRes:
+    properties:
+      updated_count:
+        type: integer
+    type: object
+  models.Message:
+    properties:
+      channel:
+        type: string
+      content:
+        type: string
+      date:
+        type: string
+      id:
+        type: string
+      username:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    name: Cyteon
+  title: Better - The better backend
+  version: 0.0.1
+paths:
+  /messages:
+    get:
+      consumes:
+      - '*/*'
+      description: Fetch every message available.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Message'
+            type: array
+      summary: Get all messages.
+      tags:
+      - messages
+    post:
+      consumes:
+      - application/json
+      description: Create a single message.
+      parameters:
+      - description: Message to create
+        in: body
+        name: message
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.CreateMessage'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.CreateMessageRes'
+      summary: Create a message.
+      tags:
+      - messages
+  /messages/:channel:
+    get:
+      description: Fetch every message in a channel.
+      parameters:
+      - description: Channel ID
+        in: path
+        name: channel
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Message'
+      summary: Get all messages in a channel.
+      tags:
+      - messages
+  /messages/:id:
+    put:
+      consumes:
+      - application/json
+      description: Update a single message.
+      parameters:
+      - description: Message update data
+        in: body
+        name: todo
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.UpdateMessage'
+      - description: Message ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.UpdateMessageRes'
+      summary: Update a message.
+      tags:
+      - messages
+swagger: "2.0"

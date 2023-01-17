@@ -10,3 +10,7 @@
 
 # air
 tmp/
+
+.codepaste
+
+.gitignore

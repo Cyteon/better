@@ -2,18 +2,17 @@
 
 ### Prerequisites
 
-- GoLang 1.19 installed
-- A mongodb database (local or cloud hosted)
+- GoLang 1.19
+- A MongoDB database
+- Basic understanding of Go and MongoDB
 
 ### Installing
 
-0. Install extra packages:
-    ```go install github.com/cosmtrek/air@latest```
+0.  ```go install github.com/cosmtrek/air@latest```
     ```go install github.com/swaggo/swag/cmd/swag@latest```
-1. Clone the repo
-2. Create your own .env file
+2. Create a .env file
 3. ```air```
-4. View docs at http://localhost:8080/docs
+4. Visit http://localhost:8080/docs
 
 ### Scripts
 

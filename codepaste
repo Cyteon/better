@@ -1,0 +1,27 @@
+type DeleteTodoResDTO struct {
+    DeletedCount int64 `json:"deleted_count" bson:"deleted_count"`
+}
+
+// @Summary Delete a single message.
+// @Description Delete a single message by id.
+// @Tags messages
+// @Param id path string true "Message ID"
+// @Produce json
+// @Success 200 {object} DeleteTodoResDTO
+// @Router /todos/:id [delete]
+func HandleDeleteTodo(c *fiber.Ctx) error {
+    id := c.Params("id")
+    dbId, err := primitive.ObjectIDFromHex(id)
+    if err != nil {
+        return c.Status(400).JSON(fiber.Map{"invalid id": err.Error()})
+    }
+
+    coll := database.GetCollection("messages")
+    filter := bson.M{"_id": dbId}
+    res, err := coll.DeleteOne(c.Context(), filter)
+    if err != nil {
+        return c.Status(500).JSON(fiber.Map{"internal server error": err.Error()})
+    }
+
+    return c.Status(200).JSON(fiber.Map{"deleted_count": res.DeletedCount})
+}

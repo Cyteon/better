@@ -17,12 +17,12 @@ func Run() error {
 		return err
 	}
 
-	err = database.StartDB()
+	err = mongo.Start()
 	if err != nil {
 		return err
 	}
 
-	defer database.CloseDB()
+	defer mongo.Close()
 
 	app := fiber.New()
 

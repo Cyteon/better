@@ -7,7 +7,6 @@ import (
 
 func InitRoutes(app *fiber.App) {
     api := app.Group("/_/")
-
     api.Get("/", func (c *fiber.Ctx) error { return c.SendString("OK") })
 
     messages := api.Group("/messages")

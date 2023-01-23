@@ -20,7 +20,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "messages"
+                    "Messages"
                 ],
                 "summary": "Get all messages.",
                 "responses": {
@@ -44,7 +44,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "messages"
+                    "Messages"
                 ],
                 "summary": "Create a message.",
                 "parameters": [
@@ -75,7 +75,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "messages"
+                    "Messages"
                 ],
                 "summary": "Get all messages in a channel.",
                 "parameters": [
@@ -107,7 +107,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "messages"
+                    "Messages"
                 ],
                 "summary": "Update a message.",
                 "parameters": [

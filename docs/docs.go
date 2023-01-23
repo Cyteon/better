@@ -28,7 +28,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "messages"
+                    "Messages"
                 ],
                 "summary": "Get all messages.",
                 "responses": {
@@ -52,7 +52,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "messages"
+                    "Messages"
                 ],
                 "summary": "Create a message.",
                 "parameters": [
@@ -83,7 +83,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "messages"
+                    "Messages"
                 ],
                 "summary": "Get all messages in a channel.",
                 "parameters": [
@@ -115,7 +115,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "messages"
+                    "Messages"
                 ],
                 "summary": "Update a message.",
                 "parameters": [

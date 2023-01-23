@@ -68,7 +68,7 @@ paths:
             type: array
       summary: Get all messages.
       tags:
-      - messages
+      - Messages
     post:
       consumes:
       - application/json
@@ -89,7 +89,7 @@ paths:
             $ref: '#/definitions/handlers.CreateMessageRes'
       summary: Create a message.
       tags:
-      - messages
+      - Messages
   /messages/:channel:
     get:
       description: Fetch every message in a channel.
@@ -108,7 +108,7 @@ paths:
             $ref: '#/definitions/models.Message'
       summary: Get all messages in a channel.
       tags:
-      - messages
+      - Messages
   /messages/:id:
     put:
       consumes:
@@ -135,5 +135,5 @@ paths:
             $ref: '#/definitions/handlers.UpdateMessageRes'
       summary: Update a message.
       tags:
-      - messages
+      - Messages
 swagger: "2.0"

@@ -18,7 +18,7 @@ import (
 // @Success 200 {object} []models.Message
 // @Router /messages [get]
 func HandleAllMessages(c *fiber.Ctx) error {
-    coll := database.GetCollection("messages")
+    coll := mongo.GetCollection("messages")
 
     filter := bson.M{}
     opts := options.Find().SetSkip(0).SetLimit(100)
@@ -64,7 +64,7 @@ func HandleGetMessagesInChannel(c *fiber.Ctx) error {
 
     fmt.Println(dbId)
 
-    coll := database.GetCollection("messages")
+    coll := mongo.GetCollection("messages")
     filter := bson.M{"channel": channel}
     //var message models.Message
 
@@ -96,7 +96,7 @@ func HandleCreateMessage(c *fiber.Ctx) error {
         return c.Status(400).JSON(fiber.Map{"bad input": err.Error()})
     }
 
-    coll := database.GetCollection("messages")
+    coll := mongo.GetCollection("messages")
     res, err := coll.InsertOne(c.Context(), newMessage)
     if err != nil {
         return c.Status(500).JSON(fiber.Map{"internal server error": err.Error()})
@@ -138,7 +138,7 @@ func HandleUpdateMessage(c *fiber.Ctx) error {
         return c.Status(400).JSON(fiber.Map{"bad input": err.Error()})
     }
 
-    coll := database.GetCollection("messages")
+    coll := mongo.GetCollection("messages")
     filter := bson.M{"_id": dbId}
     update := bson.M{"$set": updatedMessage}
     res, err := coll.UpdateOne(c.Context(), filter, update)
@@ -148,35 +148,3 @@ func HandleUpdateMessage(c *fiber.Ctx) error {
 
     return c.Status(200).JSON(fiber.Map{"updated_count": res.ModifiedCount})
 }
-
-/*
-type DeleteTodoResDTO struct {
-    DeletedCount int64 `json:"deleted_count" bson:"deleted_count"`
-}
-*/
-
-/*
-// @Summary Delete a single message.
-// @Description Delete a single message by id.
-// @Tags messages
-// @Param id path string true "Message ID"
-// @Produce json
-// @Success 200 {object} DeleteTodoResDTO
-// @Router /todos/:id [delete]
-func HandleDeleteTodo(c *fiber.Ctx) error {
-    id := c.Params("id")
-    dbId, err := primitive.ObjectIDFromHex(id)
-    if err != nil {
-        return c.Status(400).JSON(fiber.Map{"invalid id": err.Error()})
-    }
-
-    coll := database.GetCollection("messages")
-    filter := bson.M{"_id": dbId}
-    res, err := coll.DeleteOne(c.Context(), filter)
-    if err != nil {
-        return c.Status(500).JSON(fiber.Map{"internal server error": err.Error()})
-    }
-
-    return c.Status(200).JSON(fiber.Map{"deleted_count": res.DeletedCount})
-}
-*/

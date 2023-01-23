@@ -1,4 +1,4 @@
-package database
+package mongo
 
 import (
 	"context"
@@ -16,7 +16,7 @@ func GetCollection(name string) *mongo.Collection {
 	return mongoClient.Database(dbName).Collection(name)
 }
 
-func StartDB() error {
+func Start() error {
 	uri := os.Getenv("MONGODB_URI")
 	if uri == "" {
 		return errors.New("You must set your 'MONGODB_URI' environmental variable. See\n\t https://www.mongodb.com/docs/drivers/go/current/usage-examples/#environment-variable")
@@ -37,7 +37,7 @@ func StartDB() error {
 	return nil
 }
 
-func CloseDB() {
+func Close() {
 	err := mongoClient.Disconnect(context.Background())
 	if err != nil {
 		panic(err)
